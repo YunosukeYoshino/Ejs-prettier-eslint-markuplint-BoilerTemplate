@@ -2,6 +2,7 @@
   webpack.dev.js、webpack.prod.jsへビルド設定を渡す
   引数[MODE]は webpack の出力オプション（'production' か 'development'）を指定します
 */
+const ESLintPlugin = require('eslint-webpack-plugin');
 const webpackConfig = (MODE) => {
 
     //purgecssの除外設定
@@ -233,6 +234,10 @@ const webpackConfig = (MODE) => {
                         to: path.resolve(__dirname, 'dist/assets/images'),
                     },
                 ],
+            }),
+            new ESLintPlugin({
+                extensions: ['.ts', '.js'],
+                exclude: 'node_modules'
             }),
         ],
     };
